@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TYPERBLOX — Игра будущего (2025)</title>
+    <link rel="stylesheet" href="https//cndnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Глобальные стили */
+        :root {
+            --neon-blue: #0ff0fc;
+            --neon-purple: #bc13fe;
+            --neon-pink: #ff44cc;
+            --dark-space: #0a0a20;
+            --cyber-black: #11111f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', 'Orbitron', sans-serif;
+        }
+        
+        @font-face {
+            font-family: 'Orbitron';
+            src: url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        }
+        
+        body {
+            background-color: var(--dark-space);
+            color: white;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(11, 11, 25, 0.8) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(188, 19, 254, 0.1) 0%, transparent 30%);
+        }
+        
+        /* Шапка в стиле киберпанк */
+        header {
+            background: rgba(10, 10, 32, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 255, 252, 0.2);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 252, 0.5);
+            animation: flicker 1.5s infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 
+                    0 0 5px var(--neon-blue),
+                    0 0 15px var(--neon-purple),
+                    0 0 20px rgba(188, 19, 254, 0.5);
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--neon-pink);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-pink);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Основной контент */
+        .container {
+            padding-top: 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 150px 5% 50px;
+        }
+        
+        section {
+            margin-bottom: 100px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), transparent);
+        }
+        
+        p {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+        }
+        
+        .highlight {
+            color: var(--neon-blue);
+            font-weight: bold;
+        }
+        
+        /* Карточка создателя в стиле голограммы */
+        .creator-card {
+            background: rgba(20, 20, 50, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 50px auto;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 
+                0 0 20px rgba(0, 255, 252, 0.2),
+                inset 0 0 15px rgba(0, 255, 252, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s, box-shadow 0.5s;
+            text-align: center;
+        }
+        
+        .creator-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                rgba(0, 255, 252, 0.1),
+                transparent,
+                transparent
+            );
+            transform: rotate(30deg);
+            animation: hologram 6s linear infinite;
+        }
+        
+        @keyframes hologram {
+            0% { transform: rotate(30deg) translate(-10%, -10%); }
+            100% { transform: rotate(30deg) translate(10%, 10%); }
+        }
+        
+        .creator-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 0 30px rgba(0, 255, 252, 0.4),
+                inset 0 0 20px rgba(0, 255, 252, 0.2);
+        }
+        
+        .creator-card h2 {
+            color: var(--neon-pink);
+            margin-bottom: 20px;
+            font-size: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Стили для изображения создателя */
+        .creator-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 255, 252, 0.4);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .creator-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(50%) hue-rotate(180deg) contrast(1.2);
+            transition: all 0.5s;
+        }
+        
+        .creator-image:hover img {
+            filter: none;
+            transform: scale(1.05);
+        }
+        
+        .telegram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #0088cc, #00aced);
+            color: white !important;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .telegram-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 136, 204, 0.6);
+            background: linear-gradient(45deg, #006699, #0088cc);
+        }
+        
+        /* Футер с цифровым эффектом */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(5, 5, 15, 0.7);
+            border-top: 1px solid var(--neon-purple);
+            margin-top: 100px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            animation: scanline 3s linear infinite;
+        }
+        
+        @keyframes scanline {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        footer p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 1px;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            p {
+                font-size: 1.1rem;
+            }
+            
+            .creator-image {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка в стиле киберпанк -->
+    <header>
+        <div class="logo">TYPERBLOX</div>
+        <nav class="nav-links">
+            <a href="#about">Об игре</a>
+            <a href="#team">Команда</a>
+            <a href="#bugs">Поддержка</a>
+        </nav>
+    </header>
+    
+    <!-- Основной контент -->
+    <div class="container">
+        <section id="about">
+            <h1>ИГРА БУДУЩЕГО</h1>
+            <p>
+                <span class="highlight">TyperBlox</span> — это революционный проект, запускаемый в <span class="highlight">2025 году</span>. 
+                Это не просто игра, а целая экосистема, где ваша скорость печати определяет ваш успех. 
+                Мы создаем нечто <span class="highlight">уникальное</span> — с продвинутой механикой, нейросетевыми противниками и киберспортивными турнирами.
+            </p>
+            <p>
+                Представьте: <span class="highlight">виртуальные клавиатуры с тактильной отдачей, динамические уровни, меняющиеся под ваш стиль печати, и режим "Кибергонка"</span> — 
+                где вы соревнуетесь в реальном времени с игроками со всего мира.
+            </p>
+        </section>
+        
+        <section id="team">
+            <h1>КОМАНДА МЕЧТЫ</h1>
+            <p>
+                Над <span class="highlight">TyperBlox</span> работает команда из <span class="highlight">15 талантливых разработчиков</span>, включая экспертов в области:
+            </p>
+            <p>
+                • Искусственного интеллекта<br>
+                • Геймдизайна<br>
+                • Кибербезопасности (чтобы ваши данные были в безопасности)<br>
+                • Нейроинтерфейсов (экспериментальная функция мысленного ввода!)
+            </p>
+        </section>
+        
+        <section id="bugs">
+            <h1>НАШИ КОНТАКТЫ</h1>
+            <p>
+                Нашли баг? Есть идея для нового режима? Хотите стать бета-тестером?<br>
+                <span class="highlight">Пишите напрямую создателю — мы ценим вашу помощь!</span>
+            </p>
+            
+            <!-- Голографическая карточка с изображением -->
+            <div class="creator-card">
+                <h2><i class="fas fa-user-astronaut"></i> ГЛАВНЫЙ РАЗРАБОТЧИК</h2>
+                
+                <div class="creator-image">
+                    <img src="https://i.ibb.co/1Gt3GBqc/IMG-20250505-000838-132.jpg" alt="Typercreativi09">
+                </div>
+                
+                <p>Основатель проекта, создатель будущей игры,по поводу багов или вопросов к ему:</p>
+                <p><strong>Telegram:</strong> <a href="https://t.me/Typercreativi09" class="telegram-link"><i class="fab fa-telegram"></i> @Typercreativi09</a></p>
+                <p><small>Отвечает лично на все сообщения в течение 24 часов.</small></p>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Футер с цифровой анимацией -->
+    <footer>
+        <p>© 2025 TYPERBLOX | ВСЕ ПРАВА ЗАЩИЩЕНЫ | ВЕРСИЯ 2.0.25</p>
+    </footer>
+    
+    <script>
+        // Анимация появления при скролле
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Плавный скролл
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+        
+        // Эффект мерцания неона
+        const neonElements = document.querySelectorAll('.logo, h1, .creator-card');
+        setInterval(() => {
+            neonElements.forEach(el => {
+                el.style.opacity = 0.8 + Math.random() * 0.3;
+            });
+        }, 100);
+    </script>
+
+</body></html>
