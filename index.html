@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ru"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>TyperBlox — Крутая игра про набор текста!</title> 
+  <style>
+        /* Основные стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0f0f1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Шапка сайта */
+        header {
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff; }
+            to { text-shadow: 0 0 20px #6e45e2, 0 0 30px #88d3ce; }
+        }
+        
+        /* Основной контент */
+        .container {
+            padding-top: 120px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 150px 20px 50px;
+        }
+        
+        section {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, #6e45e2, #88d3ce);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #d1d1d1;
+        }
+        
+        /* Блок с контактами */
+        .creator-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 500px;
+            margin: 40px auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .creator-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .creator-card h2 {
+            color: #88d3ce;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .telegram-link {
+            display: inline-block;
+            background: #0088cc;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        
+        .telegram-link:hover {
+            background: #006699;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
+        }
+        
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 80px;
+        }
+        
+        /* Анимация появления при скролле */
+        @media (prefers-reduced-motion: reduce) {
+            section {
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    </style> 
+ </head> 
+ <body> <!-- Шапка с анимацией --> 
+  <header> 
+   <div class="logo">
+    TyperBlox
+   </div> 
+  </header> <!-- Основной контент --> 
+  <div class="container"> 
+   <section id="about"> 
+    <h1>Что такое TyperBlox?</h1> 
+    <p> <strong>TyperBlox</strong> — это инновационный проект, который мы начинаем с 2025 года! Это динамичная игра, где ваша скорость набора текста определяет успех. Мы стремимся сделать её максимально крутой и функциональной. </p> 
+    <p> Вас ждут увлекательные режимы, система достижений, мультиплеерные соревнования и многое другое. Каждый найдет что-то интересное для себя! </p> 
+   </section> 
+   <section id="team"> 
+    <h1>Наша команда</h1> 
+    <p> У нас собралась очень крутая команда разработчиков, которые вкладывают душу в этот проект. Мы постоянно работаем над улучшением игры и добавлением новых фишек. </p> 
+   </section> 
+   <section id="bugs"> 
+    <h1>Нашли баг?</h1> 
+    <p> Если вы столкнулись с какими-либо ошибками или у вас есть предложения по улучшению игры — напишите напрямую создателю проекта в Telegram. Мы ценим вашу помощь в совершенствовании TyperBlox! </p> <!-- Карточка создателя --> 
+    <div class="creator-card"> 
+     <h2>Связь с создателем</h2> 
+     <p>Главный разработчик (создатель) игры:</p> 
+     <p><strong>Telegram:</strong> <a href="https://t.me/Typercreativi09" class="telegram-link">@Typercreativi09</a></p> 
+    </div> 
+   </section> 
+  </div> 
+  <footer> 
+   <p>© 2025 TyperBlox Project. Все права защищены.</p> 
+  </footer> 
+  <script>
+        // Анимация появления блоков при скролле
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Плавный скролл для якорей
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script> 
+ 
+</body></html>
